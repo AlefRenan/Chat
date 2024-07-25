@@ -70,7 +70,6 @@ const processMessage = ({ data }) => {
     userId == user.id
       ? createMsgSelf(content)
       : createMsgOther(content, userName, userColor);
-  console.log(message);
   chatMsg.appendChild(message);
 
   scrollScreen();
