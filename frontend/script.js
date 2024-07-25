@@ -42,7 +42,7 @@ const handleLogin = (e) => {
   login.style.display = "none";
   chat.style.display = "flex";
 
-  ws = new WebSocket("ws://localhost:8080");
+  ws = new WebSocket("https://chat-backend-h3zm.onrender.com");
   ws.onmessage = processMessage;
 };
 const createMsgSelf = (content) => {
