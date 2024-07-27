@@ -43,7 +43,8 @@ const handleLogin = (e) => {
   chat.style.display = "flex";
 
   ws = new WebSocket("wss://chat-backend-h3zm.onrender.com");
-  ws.onmessage = processMessage;
+  ws.onopen = () => ws.send(JSON.stringify(loginInput.value));
+  ws.onmessage = correct;
 };
 const createMsgSelf = (content) => {
   const div = document.createElement("div");
@@ -63,8 +64,25 @@ const createMsgOther = (content, sender, senderColor) => {
   div.innerHTML += content;
   return div;
 };
-const processMessage = ({ data }) => {
-  const { userId, userName, userColor, content } = JSON.parse(data);
+
+const connect = (Name) => {
+  const spanEnter = document.createElement("span");
+  spanEnter.classList.add("enter");
+  spanEnter.innerHTML = `${Name} entrou no chat`;
+  chatMsg.appendChild(spanEnter);
+};
+
+const correct = ({ data }) => {
+  const info = JSON.parse(data);
+
+  if (typeof info == "string") {
+    connect(info);
+  } else {
+    processMessage(info);
+  }
+};
+const processMessage = (info) => {
+  const { userId, userName, userColor, content } = info;
 
   const message =
     userId == user.id

@@ -144,3 +144,12 @@ body {
   margin-bottom: 15px;
   font-weight: 700;
 }
+
+.enter {
+  margin-top: 10px;
+  color: #f8f8ffbd;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #524c4cbb;
+  align-self: center;
+}
